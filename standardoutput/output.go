@@ -1,10 +1,7 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
-	// "strconv"
 )
 
 func main() {
@@ -67,20 +64,56 @@ func main() {
 	// }
 
 	//半角スペースとバーティカルライン区切りで 10 個出力 12/2 23:52-23:58
-	sc := bufio.NewScanner(os.Stdin)
+	// sc := bufio.NewScanner(os.Stdin)
 
-	for i := 0; i < 10; i++ {
-		sc.Scan()
+	// for i := 0; i < 10; i++ {
+	// 	sc.Scan()
 
-		if i == 9 {
-			fmt.Printf("%v", sc.Text())
-		} else {
-			fmt.Printf("%v | ", sc.Text())
-		}
-	}
+	// 	if i == 9 {
+	// 		fmt.Printf("%v", sc.Text())
+	// 	} else {
+	// 		fmt.Printf("%v | ", sc.Text())
+	// 	}
+	// }
 
-	//【特定の文字で区切り 1 行で出力】大きな数値を 3 けたごとにカンマ区切りで出力
-	str := "1234567890"
-	fmt.Println(str[0:2])
+	//【特定の文字で区切り 1 行で出力】大きな数値を 3 けたごとにカンマ区切りで出力 12/3 00:12-00:21
+	// sc := bufio.NewScanner(os.Stdin)
+	// sc.Scan()
 
+	// var arr = strings.Split(sc.Text(), "")
+
+	// for i, v := range arr {
+
+	// 	//indexが3の倍数の場合、数値出力の前にカンマをつける
+	// 	if i%3 == 0 && i != 0 {
+	// 		fmt.Printf(",%v", v)
+	// 	} else {
+	// 		fmt.Printf("%v", v)
+	// 	}
+	// }
+
+	//【特定の文字で区切り 1 行で出力】大きな数値を 3 けたごとにカンマ区切りで出力 2 12/3 00:21-1:00
+	// sc := bufio.NewScanner(os.Stdin)
+	// sc.Scan()
+
+	// var arr = strings.Split(sc.Text(), "")
+
+	// //文字数の余りを事前に算出しておく
+	// var surplus = len(arr) % 3
+
+	// for i, v := range arr {
+
+	// 	//余りが事前に取得したものと一致する場合、数値出力の前にカンマをつける
+	// 	if i%3 == surplus && i != 0 {
+	// 		fmt.Printf(",%v", v)
+	// 	} else {
+	// 		fmt.Printf("%v", v)
+	// 	}
+	// }
+
+	var name string
+	var age int
+	fmt.Println("名前と年齢を入力してください:")
+	fmt.Scan(&name, &age)
+	fmt.Printf("名前: %s 年齢: %d\n", name, age)
 }
