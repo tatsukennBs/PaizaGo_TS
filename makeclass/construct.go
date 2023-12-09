@@ -1,5 +1,3 @@
-//go:build ignore
-
 package main
 
 import (
@@ -32,26 +30,34 @@ func main() {
 
 		expression := array[0]
 
-		var emp Employee
-		emp.number, err = strconv.Atoi(array[1])
+		empnum, err := strconv.Atoi(array[1])
 		if err != nil {
 			fmt.Printf("数値変換エラー: %v\n", err)
 			continue
 		}
 		switch expression {
 		case "make":
-			emp.name = array[2]
-			employee = append(employee, emp)
-
+			employee = append(employee, *NewEmployee(empnum, array[2]))
 		case "getnum":
 			//emp.number = employee[emp.number-1].number
 			//employy[i]の中身はEmploeeの型なので、要素をインスタンスのように扱い.getnum()で取得できる
-			fmt.Println(employee[emp.number-1].getnum())
+			fmt.Println(employee[empnum-1].getnum())
 
 		case "getname":
 			//emp.name = employee[emp.number-1].name
 			//employy[i]の中身はEmploeeの型なので、要素をインスタンスのように扱い.getnum()で取得できる
-			fmt.Println(employee[emp.number-1].getname())
+			fmt.Println(employee[empnum-1].getname())
+		case "change_num":
+			newnum, err := strconv.Atoi(array[2])
+			if err != nil {
+				fmt.Printf("数値変換エラー: %v\n", err)
+				continue
+			}
+			employee[empnum-1].change_num(newnum)
+
+		case "change_name":
+			newname := array[2]
+			employee[empnum-1].change_name(newname)
 		}
 	}
 }
@@ -61,6 +67,14 @@ type Employee struct {
 	name   string
 }
 
+// コンストラクタの作成
+func NewEmployee(number int, name string) *Employee {
+	return &Employee{
+		number: number,
+		name:   name,
+	}
+}
+
 func (emp *Employee) getnum() int {
 	return emp.number
 
@@ -68,4 +82,13 @@ func (emp *Employee) getnum() int {
 
 func (emp *Employee) getname() string {
 	return emp.name
+}
+
+/* 値（num,name)更新用のメソッドを追加 */
+func (emp *Employee) change_num(newnum int) {
+	emp.number = newnum
+}
+
+func (emp *Employee) change_name(newname string) {
+	emp.name = newname
 }
